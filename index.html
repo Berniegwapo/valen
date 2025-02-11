@@ -18,13 +18,14 @@
         .btn-container {
             margin-top: 20px;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            justify-content: center;
             align-items: center;
+            gap: 20px; /* ✅ Ensures buttons don't overlap */
         }
         button {
             font-size: 20px;
             padding: 15px 30px;
-            margin: 10px;
             border: none;
             cursor: pointer;
             border-radius: 10px;
@@ -37,12 +38,12 @@
         .no-btn {
             background-color: #cccccc;
             color: black;
-            position: absolute;
+            position: relative; /* ✅ Prevents initial overlapping */
         }
 
         /* Modal Styles */
         .modal {
-            display: none; /* ✅ Ensures modal is hidden on load */
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -89,21 +90,22 @@
 
     <script>
         function showModal() {
-            document.getElementById("yesModal").style.display = "flex"; // ✅ Show modal
+            document.getElementById("yesModal").style.display = "flex";
         }
 
         function closeModal() {
-            document.getElementById("yesModal").style.display = "none"; // ✅ Hide modal
+            document.getElementById("yesModal").style.display = "none";
         }
 
         function moveNoButton() {
             let button = document.querySelector(".no-btn");
-            let maxX = window.innerWidth - button.clientWidth - 20;
-            let maxY = window.innerHeight - button.clientHeight - 20;
+            let maxX = window.innerWidth - button.clientWidth - 100; // ✅ Adjusted to prevent overlap
+            let maxY = window.innerHeight - button.clientHeight - 100;
 
             let x = Math.random() * maxX;
             let y = Math.random() * maxY;
 
+            button.style.position = "absolute";
             button.style.left = x + "px";
             button.style.top = y + "px";
         }
