@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffe6e6;
+            padding-top: 100px;
+            overflow: hidden;
+        }
+        h1 {
+            color: #ff3366;
+        }
+        .btn-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        button {
+            font-size: 20px;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.3s ease;
+        }
+        .yes-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        .no-btn {
+            background-color: #cccccc;
+            color: black;
+            position: absolute;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* ✅ Ensures modal is hidden on load */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 80%;
+            max-width: 400px;
+        }
+        .close-btn {
+            margin-top: 10px;
+            background: #ff4d4d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Will You Be My Valentine? ❤️</h1>
+    <div class="btn-container">
+        <button class="yes-btn" onclick="showModal()">Yes</button>
+        <button class="no-btn" onmouseover="moveNoButton()" ontouchstart="moveNoButton()">No</button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="yesModal">
+        <div class="modal-content">
+            <h2>Yay! You made me the happiest! ❤️🥰</h2>
+            <button class="close-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function showModal() {
+            document.getElementById("yesModal").style.display = "flex"; // ✅ Show modal
+        }
+
+        function closeModal() {
+            document.getElementById("yesModal").style.display = "none"; // ✅ Hide modal
+        }
+
+        function moveNoButton() {
+            let button = document.querySelector(".no-btn");
+            let maxX = window.innerWidth - button.clientWidth - 20;
+            let maxY = window.innerHeight - button.clientHeight - 20;
+
+            let x = Math.random() * maxX;
+            let y = Math.random() * maxY;
+
+            button.style.left = x + "px";
+            button.style.top = y + "px";
+        }
+    </script>
+</body>
+</html>
