@@ -3,53 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Be My Valentine?</title>
+    <title>Happy Valentine's Day</title>
     <style>
         body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            background-color: #ffe6e6;
-            padding-top: 100px;
-            overflow: hidden;
-        }
-        h1 {
-            color: #ff3366;
-        }
-        .btn-container {
-            margin-top: 20px;
             display: flex;
-            flex-direction: row;
             justify-content: center;
             align-items: center;
-            gap: 20px; /* ✅ Ensures buttons don't overlap */
+            height: 100vh;
+            background-color: #ffebf0;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            text-align: center;
         }
-        button {
-            font-size: 20px;
-            padding: 15px 30px;
+        .heart {
+            color: red;
+            font-size: 50px;
+            animation: heartbeat 1s infinite alternate;
+        }
+        @keyframes heartbeat {
+            from { transform: scale(1); }
+            to { transform: scale(1.3); }
+        }
+        .message {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #d6336c;
+        }
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background: #d6336c;
             border: none;
             cursor: pointer;
             border-radius: 10px;
-            transition: 0.3s ease;
         }
-        .yes-btn {
-            background-color: #ff4d4d;
-            color: white;
-        }
-        .no-btn {
-            background-color: #cccccc;
-            color: black;
-            position: relative; /* ✅ Prevents initial overlapping */
-        }
-
-        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
-            top: 0;
+            z-index: 1;
             left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.5);
             justify-content: center;
             align-items: center;
         }
@@ -58,56 +56,43 @@
             padding: 20px;
             border-radius: 10px;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            width: 80%;
-            max-width: 400px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
-        .close-btn {
-            margin-top: 10px;
-            background: #ff4d4d;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
+        .close {
+            color: red;
+            font-size: 20px;
             cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+        }
+        .modal img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Will You Be My Valentine? ❤️</h1>
-    <div class="btn-container">
-        <button class="yes-btn" onclick="showModal()">Yes</button>
-        <button class="no-btn" onmouseover="moveNoButton()" ontouchstart="moveNoButton()">No</button>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal" id="yesModal">
+    <div class="heart">❤️</div>
+    <div class="message">Happy Valentine's Day 💕</div>
+    <button class="button" onclick="showModal()">Click Me</button>
+    
+    <div id="loveModal" class="modal">
         <div class="modal-content">
-            <h2>Yay! You made me the happiest! ❤️🥰</h2>
-            <button class="close-btn" onclick="closeModal()">Close</button>
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img src="tkthao219-peach.gif" alt="Love GIF">
+            <p>Thank you for being my valentine! I'm the happiest and lucky man man in the world! Take care of yourself always! 💖</p>
         </div>
     </div>
-
+    
     <script>
         function showModal() {
-            document.getElementById("yesModal").style.display = "flex";
+            document.getElementById("loveModal").style.display = "flex";
         }
-
         function closeModal() {
-            document.getElementById("yesModal").style.display = "none";
-        }
-
-        function moveNoButton() {
-            let button = document.querySelector(".no-btn");
-            let maxX = window.innerWidth - button.clientWidth - 100; // ✅ Adjusted to prevent overlap
-            let maxY = window.innerHeight - button.clientHeight - 100;
-
-            let x = Math.random() * maxX;
-            let y = Math.random() * maxY;
-
-            button.style.position = "absolute";
-            button.style.left = x + "px";
-            button.style.top = y + "px";
+            document.getElementById("loveModal").style.display = "none";
         }
     </script>
 </body>
